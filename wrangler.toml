@@ -1,0 +1,15 @@
+# Configuração do Cloudflare Worker para Copilot Free
+# Este arquivo é necessário para fazer deploy via Wrangler CLI
+
+name = "copilot-assistant"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Workers AI Binding - permite usar IA gratuitamente
+[ai]
+binding = "AI"
+
+# Limites gratuitos do Cloudflare Workers:
+# - 100.000 requisições por dia
+# - 10ms de CPU por requisição
+# - Workers AI: gratuito para uso normal
