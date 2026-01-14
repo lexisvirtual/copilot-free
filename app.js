@@ -1,6 +1,5 @@
 // Configuração - Alterar após criar o Worker
-const WORKER_URL = 'https://SEU-WORKER.workers.dev/assist';
-
+const WORKER_URL = 'https://copilot-assistant.lexis-english-account.workers.dev';
 const messagesDiv = document.getElementById('messages');
 const userInput = document.getElementById('userInput');
 const sendBtn = document.getElementById('sendBtn');
