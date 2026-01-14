@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot Free - Assistente de Marketing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Copilot Free</h1>
+            <p>Assistente gratuito para marketing e HTML</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="chat-area">
+                <div id="messages" class="messages"></div>
+                
+                <div class="input-area">
+                    <textarea 
+                        id="userInput" 
+                        placeholder="O que você precisa? Ex: criar anúncio Facebook, editar HTML, criar landing page..."
+                        rows="3"
+                    ></textarea>
+                    <button id="sendBtn" class="send-btn">Enviar</button>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <h3>Ações Rápidas</h3>
+                <button class="quick-action" data-action="anuncio-facebook">📱 Anúncio Facebook</button>
+                <button class="quick-action" data-action="anuncio-google">🔍 Anúncio Google</button>
+                <button class="quick-action" data-action="landing-page">📄 Landing Page</button>
+                <button class="quick-action" data-action="editar-html">💻 Editar HTML</button>
+                <button class="quick-action" data-action="copy-marketing">✍️ Copy Marketing</button>
+            </aside>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
