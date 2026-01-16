@@ -83,3 +83,64 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }).catch(() => {});
   }
 });
+
+// ========================================
+// FUNÇÕES PARA O AGENTE TIPO COMET
+// ========================================
+
+// URL do Worker Cloudflare (substitua pela sua URL)
+const WORKER_URL = 'https://copilot-free.seu-usuario.workers.dev';
+
+// Função para chamar o agente no Worker
+async function callAgent(pageContext, userCommand) {
+  try {
+    const response = await fetch(`${WORKER_URL}/agent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pageContext,
+        userCommand
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Worker error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Erro ao chamar Worker:', error);
+    return {
+      error: error.message,
+      reply: 'Erro ao se conectar com o agente.'
+    };
+  }
+}
+
+// Adiciona listener para comandos do agente
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'CALL_AGENT') {
+    // Primeiro pega o contexto da página
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+      if (tabs[0]) {
+        // Solicita contexto ao content script
+        chrome.tabs.sendMessage(tabs[0].id, { type: 'CAPTURE_CONTEXT' }, async (pageContext) => {
+          if (!pageContext) {
+            sendResponse({ error: 'Não foi possível capturar o contexto da página' });
+            return;
+          }
+
+          // Chama o Worker com o contexto e comando
+          const agentResponse = await callAgent(pageContext, message.userCommand);
+          
+          // Retorna a resposta para quem chamou (sidebar)
+          sendResponse(agentResponse);
+        });
+      }
+    });
+    return true; // Mantém o canal aberto para resposta assíncrona
+  }
+});
