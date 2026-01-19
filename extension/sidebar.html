@@ -7,33 +7,36 @@
 </head>
 <body>
 
-  <div id="sidebar-root">
+<div id="app">
 
-    <div id="header">
-      <strong>Copilot Autônomo</strong>
-    </div>
-
-    <div id="status">
-      Agente ativo. Envie comandos diretos para esta página.
-    </div>
-
-    <div id="output-container">
-      <div id="output">
-        Aguardando comando...
-      </div>
-
-      <button id="refreshBtn">Atualizar</button>
-    </div>
-
-    <textarea
-      id="commandInput"
-      placeholder="Ex: clicar no primeiro botão, preencher formulário..."
-    ></textarea>
-
-    <button id="executeBtn">Executar</button>
-
+  <div id="header">
+    <strong>Copilot Autônomo</strong>
+    <span id="subtitle">Aguardando contexto...</span>
   </div>
 
-  <script src="sidebar.js"></script>
+  <!-- 🔥 BLOCO QUE VAI CRESCER -->
+  <div id="console-wrapper">
+
+    <div id="console">
+      <div>Aguardando comando...</div>
+      <br />
+      <div>👋 Agente ativo. Envie comandos diretos para esta página.</div>
+    </div>
+
+    <button id="refreshBtn">Atualizar</button>
+  </div>
+
+  <textarea
+    id="commandInput"
+    placeholder="Ex: clicar no primeiro botão, preencher formulário..."
+  ></textarea>
+
+  <button id="executeBtn">Executar</button>
+
+  <div id="footer-status">Carregando contexto...</div>
+
+</div>
+
+<script src="sidebar.js"></script>
 </body>
 </html>
