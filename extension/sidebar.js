@@ -1,17 +1,14 @@
-const output = document.getElementById("output");
-const commandInput = document.getElementById("commandInput");
-const executeBtn = document.getElementById("executeBtn");
-const refreshBtn = document.getElementById("refreshBtn");
+const consoleBox = document.getElementById("console");
+const input = document.getElementById("commandInput");
 
-// Exemplo de hooks (mantém compatibilidade)
-executeBtn.addEventListener("click", () => {
-  const cmd = commandInput.value.trim();
-  if (!cmd) return;
+document.getElementById("executeBtn").onclick = () => {
+  if (!input.value.trim()) return;
+  consoleBox.innerHTML += `<br><br><strong>▶</strong> ${input.value}`;
+  input.value = "";
+  consoleBox.scrollTop = consoleBox.scrollHeight;
+};
 
-  output.textContent += "\n\n▶ " + cmd;
-  commandInput.value = "";
-});
-
-refreshBtn.addEventListener("click", () => {
-  output.textContent += "\n\n⟳ Contexto atualizado...";
-});
+document.getElementById("refreshBtn").onclick = () => {
+  consoleBox.innerHTML += "<br><br>⟳ Contexto atualizado...";
+  consoleBox.scrollTop = consoleBox.scrollHeight;
+};
