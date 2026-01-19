@@ -1,43 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Copilot Agent</title>
-  <link rel="stylesheet" href="sidebar.css">
+  <meta charset="UTF-8" />
+  <title>Copilot Autônomo</title>
+  <link rel="stylesheet" href="sidebar.css" />
 </head>
 <body>
-  <div class="sidebar-container">
-    <header class="header">
-      <h1>🤖 Copilot Agent</h1>
-      <p>Agente autônomo gratuito</p>
-    </header>
 
-    <div class="context-bar">
-      <span id="current-url" class="url-display">Aguardando...</span>
-      <button id="refresh-context" class="icon-btn" title="Atualizar">🔄</button>
+  <div id="sidebar-root">
+
+    <div id="header">
+      <strong>Copilot Autônomo</strong>
     </div>
 
-    <div class="messages-container" id="messages"></div>
-
-    <div class="input-container">
-      <textarea 
-        id="user-input" 
-        placeholder="O que fazer? Ex: Clique em Login, Preencha email..."
-        rows="3"
-      ></textarea>
-      <button id="send-btn" class="send-btn">Enviar</button>
+    <div id="status">
+      Agente ativo. Envie comandos diretos para esta página.
     </div>
 
-    <div class="quick-actions">
-      <button class="quick-btn" data-action="analyze">🔍 Analisar</button>
-      <button class="quick-btn" data-action="screenshot">📸 Screenshot</button>
-      <button class="quick-btn" data-action="extract">📄 Extrair</button>
-      <button class="quick-btn" data-action="fill">📝 Formulário</button>
+    <div id="output-container">
+      <div id="output">
+        Aguardando comando...
+      </div>
+
+      <button id="refreshBtn">Atualizar</button>
     </div>
 
-    <div class="status-bar">
-      <span id="status">Pronto</span>
-    </div>
+    <textarea
+      id="commandInput"
+      placeholder="Ex: clicar no primeiro botão, preencher formulário..."
+    ></textarea>
+
+    <button id="executeBtn">Executar</button>
+
   </div>
 
   <script src="sidebar.js"></script>
